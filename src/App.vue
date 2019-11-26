@@ -17,7 +17,12 @@
         <img class="h-32" :src="result.image_url" />
         <br />
         <div class="px-6 py-4">
-          <div class="font-bold mb-2">{{ result.name }}</div>
+          <div class="font-bold mb-2">
+            {{ result.name }}
+            <span class="text-gray-700"
+              >{{ result.first_brewed }} | {{ result.abv }}</span
+            >
+          </div>
           <p class="text-gray-700 text-base">{{ result.description }}</p>
         </div>
       </div>
