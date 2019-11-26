@@ -3,7 +3,6 @@
     <form @submit.prevent="search">
       <input v-model="query" type="search" />
       <button type="submit">Search</button>
-      <p v-if="formInvalid">Please input a search term</p>
     </form>
     <br />
 
