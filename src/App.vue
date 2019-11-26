@@ -1,21 +1,45 @@
 <template>
-  <div id="app">
-    <form @submit.prevent="search">
-      <input v-model="query" type="search" />
-      <button type="submit">Search</button>
-    </form>
-    <br />
-
-    <div v-if="searching">
-      <i>Searching...</i>
+  <div id="app" class="font-sans mt-8 p-6">
+    <div class="mb-8 flex items-center justify-center">
+      <form @submit.prevent="search">
+        <div class="flex border rounded overflow-hidden">
+          <input
+            v-model="query"
+            type="search"
+            class="px-4 py-2 text-gray-700"
+          />
+          <button
+            type="submit"
+            class="items-center justify-center px-4 my-1 border-l"
+          >
+            <svg
+              class="fill-current text-gray-500 h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
 
-    <div v-if="noResults">Sorry. No results found.</div>
+    <div class="w-full">
+      <div v-if="searching">
+        <i>Searching...</i>
+      </div>
 
-    <div v-if="count" class="font-bold mb-8">{{ count }} Results Found</div>
+      <div v-if="noResults">Sorry. No results found.</div>
 
-    <div v-for="result in results" :key="result.id">
-      <div>
+      <div v-if="count" class="font-bold mb-8 mt-4">
+        {{ count }} Results Found
+      </div>
+    </div>
+
+    <div class="w-full p-8 items-center justify-center">
+      <div v-for="result in results" :key="result.id">
         <img class="h-32" :src="result.image_url" />
         <br />
         <div class="px-6 py-4">
@@ -48,6 +72,7 @@ export default {
   },
   methods: {
     search: function() {
+      this.count = ''
       this.results = []
       this.searching = true
 
