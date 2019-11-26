@@ -12,6 +12,8 @@
 
     <div v-if="noResults">Sorry. No results found.</div>
 
+    <div v-if="count" class="font-bold mb-8">{{ count }} Results Found</div>
+
     <div v-for="result in results" :key="result.id">
       <div>
         <img class="h-32" :src="result.image_url" />
@@ -40,7 +42,8 @@ export default {
       query: '',
       results: [],
       noResults: false,
-      searching: false
+      searching: false,
+      count: ''
     }
   },
   methods: {
@@ -57,6 +60,7 @@ export default {
         .then(res => {
           this.searching = false
           this.results = res.data
+          this.count = res.data.length
         })
     }
   }

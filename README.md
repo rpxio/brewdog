@@ -16,7 +16,7 @@
 - [ ] On submit, if the input field is empty, display an error message notifying that a search term is required (how that message is displayed is up to you)
 - [ ] The API request must be asynchronous
 - [ ] A loading indicator must be displayed while the request is being performed
-- [ ] Display the number of results returned
+- [x] Display the number of results returned
 - [ ] If no results are returned, display a message that nothing was found
 - [ ] If a sort by option was specified, apply the sort to the results before displaying them
 
