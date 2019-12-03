@@ -4,20 +4,20 @@
 
 - [x] Search input field
 - [x] Submit button
-- [ ] Two radio buttons - one to search by food pairing and one to search by beer name
+- [x] Two radio buttons - one to search by food pairing and one to search by beer name
 - [ ] Dropdown menu to sort the results - selection defaults to “None”
 - [ ] Menu items: None, Beer Name, First Brewed Date, ABV
 - [x] Search results list
-- [ ] Page must be responsive - the size and layout of elements should adjust based off screen size
+- [x] Page must be responsive - the size and layout of elements should adjust based off screen size
 
 ## Part 2 Requirements
 
-- [ ] When the submit button is clicked or the enter key is pressed with the search input field in focus, any previous search results should be removed and the new query should be performed. The selected radio button will determine which URL parameters are used. If it’s search by food, use the “food” parameter. If it’s search by name, use the “beer_name” parameter.
-- [ ] On submit, if the input field is empty, display an error message notifying that a search term is required (how that message is displayed is up to you)
+- [x] When the submit button is clicked or the enter key is pressed with the search input field in focus, any previous search results should be removed and the new query should be performed. The selected radio button will determine which URL parameters are used. If it’s search by food, use the “food” parameter. If it’s search by name, use the “beer_name” parameter.
+- [x] On submit, if the input field is empty, display an error message notifying that a search term is required (how that message is displayed is up to you)
 - [ ] The API request must be asynchronous
 - [x] A loading indicator must be displayed while the request is being performed
 - [x] Display the number of results returned
-- [ ] If no results are returned, display a message that nothing was found
+- [x] If no results are returned, display a message that nothing was found
 - [ ] If a sort by option was specified, apply the sort to the results before displaying them
 
 ## Part 3 Requirements
