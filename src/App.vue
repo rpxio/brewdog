@@ -38,6 +38,13 @@
       <div v-if="noResults" class="font-bold">Sorry. No results found.</div>
 
       <div v-if="count" class="font-bold">{{ count }} Results Found</div>
+
+      <div
+        v-if="noQuery"
+        class="font-bold bg-red-500 text-white px-2 py-1 rounded"
+      >
+        Please enter a search term.
+      </div>
     </div>
 
     <div class="container mx-auto">
@@ -73,6 +80,7 @@ export default {
       results: [],
       noResults: false,
       searching: false,
+      noQuery: false,
       count: '',
       option: 'beer_name'
     }
@@ -81,24 +89,35 @@ export default {
     search: function() {
       this.count = ''
       this.results = []
-      this.searching = true
       this.noResults = false
 
-      axios
-        .get(
-          `https://api.punkapi.com/v2/beers?` +
-            this.option +
-            `=${encodeURIComponent(this.query)}`
-        )
-        .then(res => {
-          if (res.data.length === 0) {
-            this.noResults = true
-          }
+      if (this.query.length === 0) {
+        this.noQuery = true
+      } else {
+        this.noQuery = false
+        this.searching = true
 
-          this.searching = false
-          this.results = res.data
-          this.count = res.data.length
-        })
+        axios
+          .get(
+            `https://api.punkapi.com/v2/beers?` +
+              this.option +
+              `=${encodeURIComponent(this.query)}`
+          )
+          .then(
+            res => {
+              if (res.data.length === 0) {
+                this.noResults = true
+              }
+
+              this.searching = false
+              this.results = res.data
+              this.count = res.data.length
+            },
+            error => {
+              console.log(error)
+            }
+          )
+      }
     }
   }
 }
