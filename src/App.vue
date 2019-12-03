@@ -45,6 +45,13 @@
       >
         Please enter a search term.
       </div>
+
+      <div
+        v-if="searchError"
+        class="font-bold bg-red-500 text-white px-2 py-1 rounded"
+      >
+        {{ errorContents }}. Please try again.
+      </div>
     </div>
 
     <div class="container mx-auto">
@@ -82,7 +89,9 @@ export default {
       searching: false,
       noQuery: false,
       count: '',
-      option: 'beer_name'
+      option: 'beer_name',
+      searchError: false,
+      errorContents: ''
     }
   },
   methods: {
@@ -90,6 +99,7 @@ export default {
       this.count = ''
       this.results = []
       this.noResults = false
+      this.searchError = false
 
       if (this.query.length === 0) {
         this.noQuery = true
@@ -114,7 +124,9 @@ export default {
               this.count = res.data.length
             },
             error => {
-              console.log(error)
+              this.searching = false
+              this.searchError = true
+              this.errorContents = error
             }
           )
       }
