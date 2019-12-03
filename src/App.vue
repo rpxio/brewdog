@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="font-sans mt-4 p-6">
+  <div id="app" class="font-sans mt-4 p-4">
     <div class="mb-12 flex items-center justify-center">
       <h1>Find Your New Favorite Beer!</h1>
     </div>
@@ -7,15 +7,8 @@
     <div class="mb-8 flex items-center justify-center">
       <form @submit.prevent="search">
         <div class="flex border border-gray-400 rounded overflow-hidden">
-          <input
-            v-model="query"
-            type="search"
-            class="px-4 py-2 text-gray-700"
-          />
-          <button
-            type="submit"
-            class="items-center justify-center px-4 my-1 border-l"
-          >
+          <input v-model="query" type="search" class="px-4 py-2 text-gray-700" />
+          <button type="submit" class="items-center justify-center px-4 my-1 border-l">
             <svg
               class="fill-current text-gray-500 h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
@@ -52,34 +45,43 @@
       <div
         v-if="noQuery"
         class="font-bold bg-red-500 text-white px-2 py-1 rounded"
-      >
-        Please enter a search term.
-      </div>
+      >Please enter a search term.</div>
 
       <div
         v-if="searchError"
         class="font-bold bg-red-500 text-white px-2 py-1 rounded"
-      >
-        {{ errorContents }}. Please try again.
-      </div>
+      >{{ errorContents }}. Please try again.</div>
     </div>
 
     <div class="container mx-auto">
-      <div class="flex flex-wrap -mb-4">
-        <div
-          class="sm:w-full md:w-1/3 m-1 p-4 border shadow rounded"
-          v-for="result in orderedResults"
-          :key="result.id"
-        >
-          <img class="h-32" :src="result.image_url || './img/blank.png'" />
-          <br />
-          <div class="font-bold mb-2">
-            {{ result.name }}
-            <span class="text-gray-700"
-              >{{ result.first_brewed }} | {{ result.abv }}</span
+      <div class="flex flex-wrap -mx-2 mb-8 justify-center">
+        <div class="max-w-md lg:w-1/2 px-2 mb-4" v-for="result in orderedResults" :key="result.id">
+          <div class="shadow rounded-lg overflow-hidden">
+            <div
+              class="h-40 relative"
+              style="background: linear-gradient(135deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);"
             >
+              <div
+                class="absolute ml-4 mt-4 h-32 w-32 rounded-full bg-gray-200 flex justify-center overflow-hidden border-2 border-gray-100"
+              >
+                <img class="max-h-full" :src="result.image_url || './img/blank.png'" alt />
+              </div>
+            </div>
+            <div class="border-t-4 border-blue-200 p-6">
+              <h2 class="tracking-tight leading-tight text-3xl font-medium mb-4">{{ result.name }}</h2>
+              <div class="my-4 flex items-center">
+                <div class="w-1/2">
+                  <h3 class="text-2xl font-bold mb-0">{{ result.first_brewed }}</h3>
+                  <span class="text-xs uppercase tracking-widest">First Brewed</span>
+                </div>
+                <div class="w-1/2">
+                  <h3 class="text-2xl font-bold">{{ result.abv }}</h3>
+                  <span class="text-xs uppercase tracking-widest">ABV</span>
+                </div>
+              </div>
+              <p>{{ result.description }}</p>
+            </div>
           </div>
-          <p class="text-gray-700 text-base">{{ result.description }}</p>
         </div>
       </div>
     </div>
