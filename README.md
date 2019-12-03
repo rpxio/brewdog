@@ -7,8 +7,8 @@ Live at https://elated-goldberg-1ba6ec.netlify.com/
 - [x] Search input field
 - [x] Submit button
 - [x] Two radio buttons - one to search by food pairing and one to search by beer name
-- [ ] Dropdown menu to sort the results - selection defaults to “None”
-- [ ] Menu items: None, Beer Name, First Brewed Date, ABV
+- [x] Dropdown menu to sort the results - selection defaults to “None”
+- [x] Menu items: None, Beer Name, First Brewed Date, ABV
 - [x] Search results list
 - [x] Page must be responsive - the size and layout of elements should adjust based off screen size
 
@@ -20,7 +20,7 @@ Live at https://elated-goldberg-1ba6ec.netlify.com/
 - [x] A loading indicator must be displayed while the request is being performed
 - [x] Display the number of results returned
 - [x] If no results are returned, display a message that nothing was found
-- [ ] If a sort by option was specified, apply the sort to the results before displaying them
+- [x] If a sort by option was specified, apply the sort to the results before displaying them
 
 ## Part 3 Requirements
 
@@ -32,7 +32,7 @@ Live at https://elated-goldberg-1ba6ec.netlify.com/
   - Description
   - ABV
 
-- [ ] When the sort by option is changed, any existing results should update to the new sort order (bonus points if you include a slick re-sort animation).
+- [x] When the sort by option is changed, any existing results should update to the new sort order (bonus points if you include a slick re-sort animation).
 
 ## Bonus Requirements
 
