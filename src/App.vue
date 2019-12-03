@@ -61,7 +61,7 @@
           v-for="result in results"
           :key="result.id"
         >
-          <img class="h-32" :src="result.image_url" />
+          <img class="h-32" :src="result.image_url || './img/blank.png'" />
           <br />
           <div class="font-bold mb-2">
             {{ result.name }}
