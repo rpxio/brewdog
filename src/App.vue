@@ -1,8 +1,12 @@
 <template>
-  <div id="app" class="font-sans mt-8 p-6">
+  <div id="app" class="font-sans mt-4 p-6">
+    <div class="mb-12 flex items-center justify-center">
+      <h1>Find Your New Favorite Beer!</h1>
+    </div>
+
     <div class="mb-8 flex items-center justify-center">
       <form @submit.prevent="search">
-        <div class="flex border rounded overflow-hidden">
+        <div class="flex border border-gray-400 rounded overflow-hidden">
           <input
             v-model="query"
             type="search"
@@ -23,26 +27,28 @@
             </svg>
           </button>
         </div>
+        <input type="radio" v-model="option" value="beer_name" checked /> Name
+        <input type="radio" v-model="option" value="food" /> Food
       </form>
     </div>
 
-    <div class="w-full">
-      <div v-if="searching">
-        <i>Searching...</i>
-      </div>
+    <div class="mb-6 flex items-center justify-center">
+      <div v-if="searching" class="font-bold">Searching...</div>
 
-      <div v-if="noResults">Sorry. No results found.</div>
+      <div v-if="noResults" class="font-bold">Sorry. No results found.</div>
 
-      <div v-if="count" class="font-bold mb-8 mt-4">
-        {{ count }} Results Found
-      </div>
+      <div v-if="count" class="font-bold">{{ count }} Results Found</div>
     </div>
 
-    <div class="w-full p-8 items-center justify-center">
-      <div v-for="result in results" :key="result.id">
-        <img class="h-32" :src="result.image_url" />
-        <br />
-        <div class="px-6 py-4">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap -mb-4">
+        <div
+          class="sm:w-full md:w-1/3 m-1 p-4 border shadow rounded"
+          v-for="result in results"
+          :key="result.id"
+        >
+          <img class="h-32" :src="result.image_url" />
+          <br />
           <div class="font-bold mb-2">
             {{ result.name }}
             <span class="text-gray-700"
@@ -67,7 +73,8 @@ export default {
       results: [],
       noResults: false,
       searching: false,
-      count: ''
+      count: '',
+      option: 'beer_name'
     }
   },
   methods: {
@@ -75,14 +82,19 @@ export default {
       this.count = ''
       this.results = []
       this.searching = true
+      this.noResults = false
 
       axios
         .get(
-          `https://api.punkapi.com/v2/beers?beer_name=${encodeURIComponent(
-            this.query
-          )}`
+          `https://api.punkapi.com/v2/beers?` +
+            this.option +
+            `=${encodeURIComponent(this.query)}`
         )
         .then(res => {
+          if (res.data.length === 0) {
+            this.noResults = true
+          }
+
           this.searching = false
           this.results = res.data
           this.count = res.data.length
