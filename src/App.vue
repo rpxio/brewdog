@@ -27,8 +27,18 @@
             </svg>
           </button>
         </div>
-        <input type="radio" v-model="option" value="beer_name" checked /> Name
-        <input type="radio" v-model="option" value="food" /> Food
+        <div>
+          <input type="radio" v-model="option" value="beer_name" checked /> Name
+          <input type="radio" v-model="option" value="food" /> Food
+        </div>
+        <div>
+          <select v-model="sortProp">
+            <option value="id">None</option>
+            <option value="name">Beer Name</option>
+            <option value="first_brewed">First Brew Date</option>
+            <option value="abv">ABV</option>
+          </select>
+        </div>
       </form>
     </div>
 
@@ -58,7 +68,7 @@
       <div class="flex flex-wrap -mb-4">
         <div
           class="sm:w-full md:w-1/3 m-1 p-4 border shadow rounded"
-          v-for="result in results"
+          v-for="result in orderedResults"
           :key="result.id"
         >
           <img class="h-32" :src="result.image_url || './img/blank.png'" />
@@ -78,6 +88,7 @@
 
 <script>
 import axios from 'axios'
+import _ from 'lodash'
 
 export default {
   name: 'app',
@@ -91,7 +102,8 @@ export default {
       count: '',
       option: 'beer_name',
       searchError: false,
-      errorContents: ''
+      errorContents: '',
+      sortProp: 'id'
     }
   },
   methods: {
@@ -130,6 +142,11 @@ export default {
             }
           )
       }
+    }
+  },
+  computed: {
+    orderedResults: function() {
+      return _.orderBy(this.results, this.sortProp)
     }
   }
 }
