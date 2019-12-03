@@ -15,7 +15,7 @@ Live at https://elated-goldberg-1ba6ec.netlify.com/
 ## Part 2 Requirements
 
 - [x] When the submit button is clicked or the enter key is pressed with the search input field in focus, any previous search results should be removed and the new query should be performed. The selected radio button will determine which URL parameters are used. If it’s search by food, use the “food” parameter. If it’s search by name, use the “beer_name” parameter.
-- [x] On submit, if the input field is empty, display an error message notifying that a search term is required (how that message is displayed is up to you)
+- [ ] On submit, if the input field is empty, display an error message notifying that a search term is required (how that message is displayed is up to you)
 - [ ] The API request must be asynchronous
 - [x] A loading indicator must be displayed while the request is being performed
 - [x] Display the number of results returned
