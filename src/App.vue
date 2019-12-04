@@ -6,7 +6,7 @@
 
     <div class="mb-8 flex items-center justify-center">
       <form @submit.prevent="search">
-        <div class="flex border border-gray-400 rounded overflow-hidden">
+        <div class="flex border border-gray-400 rounded overflow-hidden mb-2">
           <input
             v-model="query"
             type="search"
@@ -28,19 +28,24 @@
             </svg>
           </button>
         </div>
-        <div>
-          <input
-            id="opt1"
-            type="radio"
-            v-model="option"
-            value="beer_name"
-            checked
-          />
-          <label for="opt1"> Name </label>
-          <input id="opt2" type="radio" v-model="option" value="food" />
-          <label for="opt2"> Food</label>
+        <div class="flex justify-around pb-2 mb-2 border-b">
+          <div>
+            <input
+              id="opt1"
+              type="radio"
+              v-model="option"
+              value="beer_name"
+              checked
+            />
+            <label for="opt1"> Beer Name</label>
+          </div>
+          <div>
+            <input id="opt2" type="radio" v-model="option" value="food" />
+            <label for="opt2"> Food Pairing</label>
+          </div>
         </div>
-        <div>
+        <div class="flex justify-center">
+          <span>Sort By: </span>
           <select v-model="sortProp">
             <option value="id">None</option>
             <option value="name">Beer Name</option>
@@ -130,6 +135,7 @@
 </template>
 
 <script>
+// import MessageBox from '@/components/MessageBox.vue'
 import axios from 'axios'
 import _ from 'lodash'
 
