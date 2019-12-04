@@ -1,10 +1,10 @@
 @tailwind base;
 
 h1 {
-  @apply text-2xl;
+  @apply text-4xl font-medium tracking-tight leading-tight;
 }
 h2 {
-  @apply text-xl;
+  @apply text-2xl;
 }
 h3 {
   @apply text-lg;

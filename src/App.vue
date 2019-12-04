@@ -7,8 +7,16 @@
     <div class="mb-8 flex items-center justify-center">
       <form @submit.prevent="search">
         <div class="flex border border-gray-400 rounded overflow-hidden">
-          <input v-model="query" type="search" class="px-4 py-2 text-gray-700" />
-          <button type="submit" class="items-center justify-center px-4 my-1 border-l">
+          <input
+            v-model="query"
+            type="search"
+            placeholder=""
+            class="px-4 py-2 text-gray-700"
+          />
+          <button
+            type="submit"
+            class="items-center justify-center px-4 my-1 border-l"
+          >
             <svg
               class="fill-current text-gray-500 h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +29,16 @@
           </button>
         </div>
         <div>
-          <input type="radio" v-model="option" value="beer_name" checked /> Name
-          <input type="radio" v-model="option" value="food" /> Food
+          <input
+            id="opt1"
+            type="radio"
+            v-model="option"
+            value="beer_name"
+            checked
+          />
+          <label for="opt1"> Name </label>
+          <input id="opt2" type="radio" v-model="option" value="food" />
+          <label for="opt2"> Food</label>
         </div>
         <div>
           <select v-model="sortProp">
@@ -45,41 +61,66 @@
       <div
         v-if="noQuery"
         class="font-bold bg-red-500 text-white px-2 py-1 rounded"
-      >Please enter a search term.</div>
+      >
+        Please enter a search term.
+      </div>
 
       <div
         v-if="searchError"
         class="font-bold bg-red-500 text-white px-2 py-1 rounded"
-      >{{ errorContents }}. Please try again.</div>
+      >
+        {{ errorContents }}. Please try again.
+      </div>
     </div>
 
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-2 mb-8 justify-center">
-        <div class="max-w-md lg:w-1/2 px-2 mb-4" v-for="result in orderedResults" :key="result.id">
-          <div class="shadow rounded-lg overflow-hidden">
-            <div
-              class="h-40 relative"
-              style="background: linear-gradient(135deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);"
-            >
+        <div
+          class="max-w-md lg:w-1/2 px-2 mb-4"
+          v-for="result in orderedResults"
+          :key="result.id"
+        >
+          <div class="shadow rounded-lg border border-gray-200 overflow-hidden">
+            <div class="h-40 flex justify-center">
               <div
-                class="absolute ml-4 mt-4 h-32 w-32 rounded-full bg-gray-200 flex justify-center overflow-hidden border-2 border-gray-100"
+                class="p-2 ml-4 mt-4 h-32 w-32 rounded-full bg-blue-200 flex justify-center overflow-hidden"
               >
-                <img class="max-h-full" :src="result.image_url || './img/blank.png'" alt />
+                <img
+                  class="max-h-full"
+                  :src="result.image_url || './img/blank.png'"
+                  alt
+                />
               </div>
             </div>
             <div class="border-t-4 border-blue-200 p-6">
-              <h2 class="tracking-tight leading-tight text-3xl font-medium mb-4">{{ result.name }}</h2>
+              <h2
+                class="text-gray-700 tracking-tight leading-tight text-3xl font-medium mb-4"
+              >
+                {{ result.name }}
+              </h2>
               <div class="my-4 flex items-center">
                 <div class="w-1/2">
-                  <h3 class="text-2xl font-bold mb-0">{{ result.first_brewed }}</h3>
-                  <span class="text-xs uppercase tracking-widest">First Brewed</span>
+                  <h3 class="text-gray-700 text-2xl font-bold -mb-1 -pb-1">
+                    {{ result.first_brewed }}
+                  </h3>
+                  <p
+                    class="text-gray-600 text-xs uppercase tracking-widest mt-0 pt-0"
+                  >
+                    First Brewed
+                  </p>
                 </div>
                 <div class="w-1/2">
-                  <h3 class="text-2xl font-bold">{{ result.abv }}</h3>
-                  <span class="text-xs uppercase tracking-widest">ABV</span>
+                  <h3 class="text-gray-700 text-2xl font-bold -mb-1 -pb-1">
+                    {{ result.abv }}
+                  </h3>
+                  <p
+                    class="text-gray-600 text-xs uppercase tracking-widest mt-0 pt-0"
+                  >
+                    ABV
+                  </p>
                 </div>
               </div>
-              <p>{{ result.description }}</p>
+              <p class="text-gray-900">{{ result.description }}</p>
             </div>
           </div>
         </div>
