@@ -1,12 +1,15 @@
 <template>
   <div id="app" class="font-sans mt-4 p-4">
-    <div class="mb-12 flex items-center justify-center">
-      <h1>Find Your New Favorite Beer!</h1>
+    <div class="mb-12 text-center">
+      <h1 class="font-black tracking-tight">BrewDog Search</h1>
+      <h3 class="uppercase tracking-wide">Find Your New Favorite Beer!</h3>
     </div>
 
     <div class="mb-8 flex items-center justify-center">
       <form @submit.prevent="search">
-        <div class="flex border border-gray-400 rounded overflow-hidden mb-2">
+        <div
+          class="flex border border-gray-400 bg-white rounded overflow-hidden mb-2"
+        >
           <input
             v-model="query"
             type="search"
@@ -37,15 +40,15 @@
               value="beer_name"
               checked
             />
-            <label for="opt1"> Beer Name</label>
+            <label class="uppercase" for="opt1"> Beer Name</label>
           </div>
           <div>
             <input id="opt2" type="radio" v-model="option" value="food" />
-            <label for="opt2"> Food Pairing</label>
+            <label class="uppercase" for="opt2"> Food Pairing</label>
           </div>
         </div>
-        <div class="flex justify-center">
-          <span>Sort By: </span>
+        <div class="flex justify-center items-center">
+          <span class="mr-1 uppercase text-sm">Sort By: </span>
           <select v-model="sortProp">
             <option value="id">None</option>
             <option value="name">Beer Name</option>
@@ -81,11 +84,13 @@
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-2 mb-8 justify-center">
         <div
-          class="max-w-md lg:w-1/2 px-2 mb-4"
+          class="max-w-md lg:w-1/2 px-2 mb-6"
           v-for="result in orderedResults"
           :key="result.id"
         >
-          <div class="shadow rounded-lg border border-gray-200 overflow-hidden">
+          <div
+            class="shadow rounded-lg border border-gray-200 bg-white overflow-hidden"
+          >
             <div class="h-40 flex justify-center">
               <div
                 class="p-2 ml-4 mt-4 h-32 w-32 rounded-full bg-blue-200 flex justify-center overflow-hidden"
