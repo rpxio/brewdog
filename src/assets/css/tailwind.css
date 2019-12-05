@@ -1,7 +1,7 @@
 @tailwind base;
 
 h1 {
-  @apply text-3xl font-medium tracking-tight leading-tight;
+  @apply text-4xl font-medium tracking-tight leading-tight;
 }
 h2 {
   @apply text-xl;
