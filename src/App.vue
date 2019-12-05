@@ -49,7 +49,7 @@
           <select v-model="sortProp">
             <option value="id">None</option>
             <option value="name">Beer Name</option>
-            <option value="first_brewed">First Brew Date</option>
+            <option value="sort_date">First Brew Date</option>
             <option value="abv">ABV</option>
           </select>
         </div>
@@ -135,7 +135,6 @@
 </template>
 
 <script>
-// import MessageBox from '@/components/MessageBox.vue'
 import axios from 'axios'
 import _ from 'lodash'
 
@@ -182,6 +181,26 @@ export default {
 
               this.searching = false
               this.results = res.data
+
+              // add sort_date item for date sorting
+              this.results.forEach(item => {
+                let date = item.first_brewed.toString()
+
+                if (date.includes('/')) {
+                  // split month/year
+                  date = date.split('/')
+                } else {
+                  // if only the year is given, add 00 as month
+                  date = date.split()
+                  date.unshift('00')
+                }
+
+                // reassemble and add to the object
+                date = date[1] + '/' + date[0]
+                date = date.toString()
+                item.sort_date = date
+              })
+
               this.count = res.data.length
             },
             error => {
