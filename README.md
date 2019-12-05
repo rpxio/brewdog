@@ -2,6 +2,46 @@
 
 Live at https://elated-goldberg-1ba6ec.netlify.com/
 
+---
+
+## Project Setup
+
+### Using Docker
+
+#### Start
+
+```
+docker-compose up
+```
+
+Open browser to http://localhost:8081
+
+#### Stop
+
+```
+docker-compose stop
+```
+
+### Using Yarn
+
+```
+yarn install
+```
+
+#### Compiles and hot-reloads for development
+
+```
+yarn serve
+```
+
+#### Compiles and minifies for production
+
+```
+yarn build
+```
+
+---
+
 ## Part 1 Requirements
 
 - [x] Search input field
@@ -42,33 +82,3 @@ Live at https://elated-goldberg-1ba6ec.netlify.com/
 - [ ] Pagination controls - the default page size is 25 but can be increased via URL parameter
 - [ ] Save the state of the page so that refreshing returns you back to where you left off
 - [ ] Use popular state management techniques or libraries to demonstrate scalability
-
----
-
-## Project setup
-
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
